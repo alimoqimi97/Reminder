@@ -13,12 +13,13 @@ class Today extends React.Component
     {        
         return (
             <div className="text-center" >
-                <p className="date-style font-weight-bolder" >
+                <p className="date-style font-weight-bolder text-warning animated flipInX  delay-4s" >
                     {
                       this.props.Dt.getFullYear() + "/" +
                       this.props.Dt.getDay() + "/" +
-                      this.props.Dt.getMonth()
+                      this.props.Dt.getMonth() + " "
                     }
+                    <span className="fa fa-calendar"> </span>
                 </p>
             </div>
         );

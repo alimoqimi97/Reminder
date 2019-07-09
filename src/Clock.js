@@ -2,9 +2,9 @@ import React from "react";
 import Today from "./Today";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "./cssanimation/cssanimation.css";
+// import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
 import "./Animate.css";
-// import "fontawesome";
-import $ from "jquery";
+// import $ from "jquery";
 import "./Tyt.css";
 import "popper.js";
 
@@ -17,7 +17,6 @@ class Clock extends React.Component
 
         this.setTimeInClock = this.setTimeInClock.bind(this);
         this.checkTime = this.checkTime.bind(this);
-        this.insertAnimationForTime = this.insertAnimationForTime.bind(this);
     }
 
     componentWillMount()
@@ -52,7 +51,7 @@ class Clock extends React.Component
         }
         if(tim.getMinutes() < 10)
         {
-            minstr += "0" + tim.getMinutes();
+            minstr = "0" + tim.getMinutes();
         }
         if(tim.getSeconds() < 10)
         {
@@ -62,20 +61,15 @@ class Clock extends React.Component
         return (hourstr + ":" + minstr + ":" + secstr);
     }
 
-    insertAnimationForTime(cls)
-    {
-        debugger;
-        $(".clock-background h3")
-    }
     render()
     {
         return (
-            <div className="clock-background animated infinitive fadeInDown delay-1s">
-                <h3 id="time" className="text-capitalize font-italic font-weight-bolder animated infinitive flipInY delay-3s" >
-                    {
-                        this.state.now
-                    }
-                </h3>
+            <div className="clock-background animated fadeInDown delay-1s">
+                    <h6 id="time" className="text-capitalize font-italic font-weight-bold animated flipInY delay-3s" >
+                        {
+                            this.state.now
+                        }
+                    </h6>
                 <Today Dt={this.state.currentTime} />
             </div>
         );
