@@ -11,7 +11,7 @@ class ReminderMenu extends Component
         super(props);
 
         this.state = {
-            reminderList: [ {title: "lll",desc: "lll", deadLine: "1111",status: false} ] ,
+            reminderList: [ {title: "aa", desc: "bb" , deadLine: "dd", status: false} ] ,
             curRem: {
                 title: "",
                 desc: "",
@@ -39,8 +39,9 @@ class ReminderMenu extends Component
         this.closeInfowindow = this.closeInfowindow.bind(this);
     }
 
+    //      this methods will be sent to every Reminder component to filling curRem in this.state   //
     fillCurRem(tit,des,ddl,st){
-
+        //  state of this component fills by Reminders in the ul for information window (linfting state up).    //
         this.setState({
             curRem: {
                 title: tit,
@@ -53,6 +54,7 @@ class ReminderMenu extends Component
         this.showInfoWindow();
     }
 
+    //  showing any Reminder by pressing a button on it .   //
     showInfoWindow(){
         var infowindow = $("#infoiwnd");
         infowindow.removeClass("d-none");
@@ -63,23 +65,27 @@ class ReminderMenu extends Component
         $("#infowind").removeClass("d-block").addClass("d-none");
     }
 
-
+    //  adding Reminder to list (ul) by clicking on "plus(+)" button    //
     addReminder(){
         debugger;
         var reminder = { title: this.titNode.value , desc: this.descNode.value, deadLine: this.ddlNode.value , status: false };
         var rl = this.state.reminderList;
 
-        rl.concat(reminder);
+        // rl.concat(reminder);
+
+        rl.push(reminder);
 
         this.setState({reminderList: rl});
 
         this.closeAddWindow();
     }
 
+    //  opening addwindow by pressing plus button(+).   //
     showAddWindow(){
         $("#addwind").removeClass("d-none").addClass("d-block");
     }
 
+    //  closing addWindow by pressing a button in add window        //
     closeAddWindow(){
         $("#addwind").removeClass("d-block").addClass("d-none");
     }
@@ -93,7 +99,7 @@ class ReminderMenu extends Component
         return (
             <div className="container reminder-menu bg-light rounded" >
                 {/* user menu */}
-                <div className="container btn-group reminder-panel" >
+                <div className="container btn-group  reminder-panel" >
                     <button onClick={this.showAddWindow} className="btn btn-info fa fa-plus" type="button"></button>
                     <button className="btn btn-info fa fa-pen" type="button"></button>
                     <button className="btn btn-info fa fa-trash" type="button"></button>
@@ -105,7 +111,7 @@ class ReminderMenu extends Component
                     {
                         this.state.reminderList.map(function(e,index){
                         return (
-                            <li key={index.toString()} className="list-group-item list-group-item-action list-group-item-success" ><Reminder info={r[index]} seeButton={f} /></li>
+                            <li key={index.toString()} className="list-group-item list-group-item-action list-group-item-light" ><Reminder info={r[index]} seeButton={f} /></li>
                         );
                     })
                     }
